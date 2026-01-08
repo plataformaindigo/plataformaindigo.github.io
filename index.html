@@ -300,62 +300,6 @@ Plataforma INDIGO ofrece una prueba de 30 días, sin compromiso de suscripción,
   </div>
 </div>
 
-<script>
-function toggleMobilePanel() {
-  const panel = document.querySelector('.mobile-panel');
-  const overlay = document.querySelector('.overlay');
-  panel.classList.toggle('open');
-  overlay.classList.toggle('active');
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-  // Clonamos el contenido del menú desktop al móvil para no repetir código HTML
-  const desktopMenu = document.querySelector('.menu').innerHTML;
-  document.getElementById('mobile-menu-content').innerHTML = desktopMenu;
-
-  // Manejo de acordeón en móvil
-  document.getElementById('mobile-menu-content').addEventListener('click', (e) => {
-    const btn = e.target.closest('.menu-button');
-    if (btn) {
-      const item = btn.parentElement;
-      item.classList.toggle('open');
-    }
-  });
-});
-
-<script>
-let urlPendiente = null;
-
-// Intercepta SOLO links a solicitud
-document.addEventListener("click", e => {
-  const a = e.target.closest("a");
-  if (!a) return;
-
-  if (a.href.includes("page=solicitud")) {
-    e.preventDefault();
-    urlPendiente = a.href;
-    document.getElementById("tipoModal").style.display = "flex";
-  }
-});
-
-// Paciente → entra normal
-document.getElementById("btnPaciente").onclick = () => {
-  window.location.href = urlPendiente;
-};
-
-// Profesional → cambia page
-document.getElementById("btnProfesional").onclick = () => {
-  const url = new URL(urlPendiente);
-  url.searchParams.set("page", "profesional");
-  window.location.href = url.toString();
-};
-</script>
-
-  
-</script>
-
-
-
 
 <!-- MODAL TIPO USUARIO -->
 <div id="tipoModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,.55); z-index:5000; align-items:center; justify-content:center;">
@@ -366,9 +310,67 @@ document.getElementById("btnProfesional").onclick = () => {
   </div>
 </div>
 
+
+
+
+  
+
+<script>
+function toggleMobilePanel() {
+  const panel = document.querySelector('.mobile-panel');
+  const overlay = document.querySelector('.overlay');
+  panel.classList.toggle('open');
+  overlay.classList.toggle('active');
+}
+
+let urlPendiente = null;
+
+document.addEventListener('DOMContentLoaded', () => {
+
+  // Clonar menú desktop a mobile
+  const desktopMenu = document.querySelector('.menu').innerHTML;
+  document.getElementById('mobile-menu-content').innerHTML = desktopMenu;
+
+  document.getElementById('mobile-menu-content').addEventListener('click', (e) => {
+    const btn = e.target.closest('.menu-button');
+    if (btn) btn.parentElement.classList.toggle('open');
+  });
+
+  // Interceptar links de solicitud
+  document.addEventListener("click", e => {
+    const a = e.target.closest("a");
+    if (!a) return;
+
+    if (a.href.includes("page=solicitud")) {
+      e.preventDefault();
+      urlPendiente = a.href;
+      document.getElementById("tipoModal").style.display = "flex";
+    }
+  });
+
+  document.getElementById("btnPaciente").onclick = () => {
+    window.location.href = urlPendiente;
+  };
+
+  document.getElementById("btnProfesional").onclick = () => {
+    const url = new URL(urlPendiente);
+    url.searchParams.set("page", "profesional");
+    window.location.href = url.toString();
+  };
+});
+</script>
+
+
+
+
+
+
+
+
   
 </body>
 </html>
+
 
 
 
