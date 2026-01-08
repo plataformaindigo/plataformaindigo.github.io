@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Vista hoja INFORMES</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+      padding: 20px;
+    }
+    h2 {
+      margin-bottom: 12px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+      font-size: 14px;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px 10px;
+      white-space: nowrap;
+    }
+    th {
+      background: #f0f0f0;
+      position: sticky;
+      top: 0;
+      z-index: 2;
+    }
+    tr:nth-child(even) {
+      background: #fafafa;
+    }
+    .loading {
+      opacity: 0.6;
+    }
+  </style>
+</head>
+<body>
+
+<h2>Hoja INFORMES – Vista de prueba</h2>
+
+<table id="tabla">
+  <thead></thead>
+  <tbody></tbody>
+</table>
+
+<script>
+  const ENDPOINT = "https://script.google.com/macros/s/AKfycbzfWoDsOjfyxf_cTk8znR-omBAgPnOafGfJHW5Ej_Dk/exec?page=externo_lista";
+
+  fetch(ENDPOINT)
+    .then(r => r.json())
+    .then(data => {
+      const registros = Array.isArray(data) ? data : data.registros;
+      if (!registros || !registros.length) return;
+
+      const headers = Object.keys(registros[0]);
+      const thead = document.querySelector("#tabla thead");
+      const tbody = document.querySelector("#tabla tbody");
+
+      // headers
+      thead.innerHTML =
+        "<tr>" + headers.map(h => `<th>${h}</th>`).join("") + "</tr>";
+
+      // filas
+      tbody.innerHTML = registros.map(row =>
+        "<tr>" +
+          headers.map(h => `<td>${row[h] ?? ""}</td>`).join("") +
+        "</tr>"
+      ).join("");
+    })
+    .catch(err => {
+      document.body.innerHTML += "<p>Error cargando datos</p>";
+      console.error(err);
+    });
+</script>
+
+</body>
+</html>
