@@ -11,7 +11,7 @@ const CLIENTE = {
     Solicite su propia versión personalizada del sistema, utilizando su nombre institucional o profesional, identidad visual, membretes y estructura de informes médicos adaptada a sus prácticas.<br><br>
     Plataforma INDIGO ofrece una prueba de 30 días, sin compromiso de suscripción, durante la cual podrá generar informes médicos con la estética y estructura de su institución o consultorio.
   `,
-  
+
   menu:[
     { nombre:"PSIQUIATRIA", links:[{ text:"Psi. Romina Vázquez", id:"indigopsivazquez" }]},
     { nombre:"RAYOS X", links:[{ text:"Dr. Gastón Pérez", id:"indigorxdrperez" }]},
@@ -22,31 +22,49 @@ const CLIENTE = {
   baseURL: "https://script.google.com/macros/s/AKfycbxSfKZRaJMnpRWu12ywRm5u2U3R01675rcGAGm71yBg4cCy6w72zA85JLqs03UF37RQfw/exec"
 };
 
-// Construir menú dinámicamente
-function construirMenu(){
+// Construir sidebar completo
+function construirSidebar(){
+  // Actualizar perfil
+  const profilePic = document.querySelector('.profile-pic img');
+  if(profilePic) profilePic.src = CLIENTE.logo;
+
+  const nameEl = document.querySelector('.name');
+  if(nameEl) nameEl.textContent = CLIENTE.nombre;
+
+  const specialtyEl = document.querySelector('.specialty');
+  if(specialtyEl) specialtyEl.textContent = CLIENTE.especialidades;
+
+  const descEl = document.querySelector('.description');
+  if(descEl) descEl.innerHTML = CLIENTE.descripcion;
+
+  // Construir menú dinámico
   const sidebar = document.getElementById('sidebar-menu');
   sidebar.innerHTML = "";
-  CLIENTE.menu.forEach(seccion=>{
+  CLIENTE.menu.forEach(seccion => {
     const div = document.createElement('div');
     div.className = "menu-item";
+
     const btn = document.createElement('div');
     btn.className = "menu-button";
     btn.textContent = seccion.nombre;
     div.appendChild(btn);
+
     const dropdown = document.createElement('div');
     dropdown.className = "dropdown";
-    seccion.links.forEach(link=>{
+    seccion.links.forEach(link => {
       const a = document.createElement('a');
       a.href = `${CLIENTE.baseURL}?page=solicitud&medico=${link.id}`;
       a.textContent = link.text;
       dropdown.appendChild(a);
     });
+
     div.appendChild(dropdown);
     sidebar.appendChild(div);
   });
 }
 
-document.addEventListener('DOMContentLoaded', construirMenu);
+// Ejecutar al cargar la página
+document.addEventListener('DOMContentLoaded', construirSidebar);
 
       
       
