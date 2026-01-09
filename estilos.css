@@ -11,20 +11,61 @@
   --radius-sm: 8px;
 }
 
+/* BASE */
 * { box-sizing: border-box; font-family: "Inter", "Segoe UI", Roboto, Arial, sans-serif; }
-body { margin: 0; background: var(--light); color: var(--text-dark); overflow-x: hidden; }
-
+body { margin: 0; background: var(--light); color: var(--text-dark); height: 100vh; overflow-x: hidden; }
 .container { display: flex; height: 100vh; }
 
-/* GRID DE BOTONES */
+/* SIDEBAR FIJA (INSTITUCIÓN) */
+.sidebar {
+  width: 320px;
+  background: linear-gradient(180deg, var(--dark), #13315c);
+  padding: 35px 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  box-shadow: 10px 0 30px rgba(0,0,0,0.25);
+  z-index: 10;
+  flex-shrink: 0;
+}
+.profile-pic { width: 140px; height: 140px; border-radius: 50%; background: rgba(255,255,255,0.08); margin-bottom: 22px; overflow: hidden; border: 3px solid var(--secondary); }
+.profile-pic img { width: 100%; height: 100%; object-fit: cover; }
+.name { font-size: 1.4rem; font-weight: 800; margin-bottom: 6px; text-align: center; }
+.specialty { font-size: 0.95rem; color: var(--accent); font-weight: 600; margin-bottom: 18px; }
+.description { font-size: 0.9rem; line-height: 1.5; text-align: center; opacity: 0.85; }
+
+/* AREA PRINCIPAL */
+.main { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+
+/* TOPBAR */
+.topbar {
+  height: 60px;
+  background: linear-gradient(90deg, var(--dark), #13315c);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 20px;
+  position: relative;
+  z-index: 1000;
+}
+.mobile-toggle {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.6rem;
+  cursor: pointer;
+  padding: 5px;
+}
+
+/* GRID BOTONES */
 .grid-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 25px;
   margin-top: 20px;
   max-width: 900px;
-  margin-left: auto;
-  margin-right: auto;
+  padding: 30px;
 }
 .grid-card {
   background: var(--white);
@@ -47,85 +88,28 @@ body { margin: 0; background: var(--light); color: var(--text-dark); overflow-x:
   background: linear-gradient(145deg, #ffffff, var(--light));
   border-color: var(--secondary);
 }
-.grid-card span { font-size: 1.1rem; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; }
+.grid-card span { font-size: 1.1rem; font-weight: 700; text-transform: uppercase; }
 
-/* SIDEBAR */
-.sidebar {
-  width: 280px;
-  background: linear-gradient(180deg, var(--dark), #13315c);
-  color: white;
+/* SIDEBAR DESLIZABLE (ESPECIALIDADES) */
+.specialty-panel {
   position: fixed;
-  top: 0;
-  left: -280px; /* escondida inicialmente */
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  padding: 35px 20px;
-  z-index: 2000;
+  top: 0; right: 0;
+  height: 100vh; width: 280px; max-width: 85%;
+  background: linear-gradient(180deg, var(--dark), #0f3b5f);
+  color: white; z-index: 3000;
+  transform: translateX(100%);
   transition: transform 0.3s cubic-bezier(.2,.9,.3,1);
+  padding: 20px 0; display: flex; flex-direction: column;
 }
-.sidebar.open { transform: translateX(280px); }
-.profile-pic { width: 140px; height: 140px; border-radius: 50%; background: rgba(255,255,255,0.08); margin-bottom: 22px; overflow: hidden; border: 3px solid var(--secondary); }
-.profile-pic img { width: 100%; height: 100%; object-fit: cover; }
-.name { font-size: 1.4rem; font-weight: 800; margin-bottom: 6px; text-align: center; }
-.specialty { font-size: 0.95rem; color: var(--accent); font-weight: 600; margin-bottom: 18px; }
-.description { font-size: 0.9rem; line-height: 1.5; text-align: center; opacity: 0.85; }
+.specialty-panel.open { transform: translateX(0); }
+.panel-header { padding: 0 20px 20px; border-bottom: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: space-between; align-items: center; }
+.close-btn { background: none; border: none; color: white; font-size: 1.8rem; cursor: pointer; }
 
-/* TOPBAR */
-.topbar {
-  height: 60px;
-  background: linear-gradient(90deg, var(--dark), #13315c);
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  padding: 0 20px;
-  position: relative;
-  z-index: 1500;
-}
-
-/* BOTÓN HAMBURGUESA */
-.mobile-toggle {
-  background: none;
-  border: none;
-  color: white;
-  font-size: 1.8rem;
-  cursor: pointer;
-}
-
-/* MENU Y DROPDOWN */
-.menu-item { position: relative; margin-bottom: 5px; }
-.menu-button {
-  color: white;
-  font-weight: 600;
-  padding: 10px 16px;
-  border-radius: var(--radius-sm);
-  cursor: pointer;
-  transition: background 0.2s;
-}
-.menu-item:hover .menu-button { background: rgba(46,196,182,0.25); }
-.dropdown {
-  position: relative;
-  display: none;
-  background: rgba(255,255,255,0.1);
-  border-radius: var(--radius-sm);
-  padding: 5px 0;
-}
-.menu-item.open .dropdown { display: block; }
-.dropdown a { display: block; padding: 8px 12px; color: white; text-decoration: none; font-weight: 500; }
-.dropdown a:hover { background: var(--secondary); color: white; }
-
-/* CONTENT */
-.content { padding: 50px 20px 20px 20px; flex: 1; overflow-y: auto; }
-
-/* OVERLAY */
-.overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); visibility: hidden; opacity: 0; transition: 0.3s; z-index: 1800; }
-.overlay.active { visibility: visible; opacity: 1; }
-
-/* RESPONSIVE */
-@media (max-width: 768px){
-  .grid-container { gap: 15px; }
-  .profile-pic { width: 60px; height: 60px; border-width: 2px; margin-bottom: 10px; }
-  .name { font-size: 1.1rem; }
-  .specialty { font-size: 0.8rem; }
-  .description { display: none; }
-}
+/* MENU DENTRO DEL PANEL */
+#sidebar-menu .menu-item { width: 100%; border-bottom: 1px solid rgba(255,255,255,0.06); }
+#sidebar-menu .menu-button { display: flex; justify-content: space-between; align-items: center; padding: 16px 20px; width: 100%; background: none; border: none; text-align: left; font-size: 1.1rem; cursor: pointer; }
+#sidebar-menu .menu-button::after { content: "▸"; transition: transform 0.2s; }
+#sidebar-menu .menu-item.open .menu-button::after { transform: rotate(90deg); }
+#sidebar-menu .dropdown { position: static; display: none; width: 100%; background: rgba(0,0,0,0.2); }
+#sidebar-menu .menu-item.open .dropdown { display: block; }
+#sidebar-menu .dropdown a { color: rgba(255,255,255,0.8); border-bottom: 1px solid rgba(255,255,255,0.05); padding-left: 35px;
