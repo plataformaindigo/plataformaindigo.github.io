@@ -8,7 +8,8 @@
 </head>
 <body>
 
-
+  
+<!--  MODALES -->
 <!-- MODAL TIPO USUARIO -->
 <div id="tipoModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,.55); z-index:5001; align-items:center; justify-content:center;">
   <div style="background:#fff; padding:30px 30px 25px; border-radius:14px; text-align:center; min-width:280px; position:relative;">
@@ -25,7 +26,24 @@
     <button id="btnEnviarPaciente" style="margin:10px; padding:10px 16px;">ENVIAR ENLACE A PACIENTE</button>
   </div>
 </div>
+<!-- MINI-MODAL ENVIAR A PACIENTE -->
+<div id="modalEnviarPaciente" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,.55); z-index:5002; align-items:center; justify-content:center;">
+  <div style="background:#fff; padding:25px 25px 20px; border-radius:14px; text-align:center; min-width:280px; position:relative;">
+    
+    <!-- BOTÓN CERRAR -->
+    <button id="btnCerrarEnviarPaciente"
+      style="position:absolute; top:10px; right:12px; background:none; border:none; font-size:22px; cursor:pointer; color:#888;">
+      ×
+    </button>
 
+    <h3 style="margin-top:0; color:#1f6f8b;">Enviar enlace al paciente</h3>
+    <p>Ingrese número de WhatsApp (solo números, sin +)</p>
+    <input type="text" id="inputWhatsapp" placeholder="Ej: 5491122334455" style="padding:8px 10px; width:100%; margin-bottom:15px; border-radius:6px; border:1px solid #ccc;">
+
+    <button id="btnEnviarWA" style="padding:10px 16px;">ENVIAR</button>
+  </div>
+</div>
+    <!-- FIN MODALES -->
   
 
 <div class="overlay" id="overlay" onclick="toggleSpecialtyPanel()"></div>
