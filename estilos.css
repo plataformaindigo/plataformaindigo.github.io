@@ -114,31 +114,3 @@ body { margin: 0; background: var(--light); color: var(--text-dark); height: 100
 #sidebar-menu .menu-item.open .dropdown { display: block; }
 #sidebar-menu .dropdown a { color: rgba(255,255,255,0.8); border-bottom: 1px solid rgba(255,255,255,0.05); padding-left: 35px;
 
-
-/* BARRA SUPERIOR LOGO MÓVIL */
-.mobile-topbar {
-  display: none; /* visible solo en móvil */
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 60px;
-  background: linear-gradient(90deg, var(--dark), #13315c);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 15px;
-  z-index: 4000;
-}
-
-.mobile-topbar .mobile-logo img {
-  height: 40px;
-  width: auto;
-  border-radius: 6px;
-}
-
-/* Responsive: mostrar barra móvil y ocultar sidebar */
-@media (max-width: 768px) {
-  .sidebar { display: none; }
-  .mobile-topbar { display: flex; }
-}
