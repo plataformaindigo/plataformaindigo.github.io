@@ -118,4 +118,9 @@ document.getElementById("btnEnviarWA").onclick = () => {
   document.getElementById("modalEnviarPaciente").style.display = "none";
 };
 
+// Setear logo en mobile
+document.addEventListener('DOMContentLoaded', () => {
+  const mobileLogo = document.getElementById("mobileLogo");
+  if(mobileLogo) mobileLogo.src = CLIENTE.logo;
+});
 
