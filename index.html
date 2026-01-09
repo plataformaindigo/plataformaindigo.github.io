@@ -303,12 +303,27 @@ Plataforma INDIGO ofrece una prueba de 30 días, sin compromiso de suscripción,
 
 <!-- MODAL TIPO USUARIO -->
 <div id="tipoModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,.55); z-index:5000; align-items:center; justify-content:center;">
-  <div style="background:#fff; padding:25px 30px; border-radius:14px; text-align:center; min-width:280px;">
+  <div style="background:#fff; padding:30px 30px 25px; border-radius:14px; text-align:center; min-width:280px; position:relative;">
+
+    <!-- BOTÓN CERRAR -->
+    <button id="btnCerrarModal"
+      style="position:absolute; top:10px; right:12px; background:none; border:none; font-size:22px; cursor:pointer; color:#888;">
+      ×
+    </button>
+
     <h3 style="margin-top:0; color:#1f6f8b;">¿Cómo desea ingresar?</h3>
-    <button id="btnPaciente" style="margin:10px; padding:10px 16px;">SOY PACIENTE</button>
-    <button id="btnProfesional" style="margin:10px; padding:10px 16px;">SOY PROFESIONAL</button>
+
+    <button id="btnPaciente" style="margin:10px; padding:10px 16px;">
+      SOY PACIENTE
+    </button>
+
+    <button id="btnProfesional" style="margin:10px; padding:10px 16px;">
+      SOY PROFESIONAL
+    </button>
+
   </div>
 </div>
+
 
 
 
@@ -317,6 +332,13 @@ Plataforma INDIGO ofrece una prueba de 30 días, sin compromiso de suscripción,
   
 
 <script>
+
+document.getElementById("btnCerrarModal").onclick = () => {
+  document.getElementById("tipoModal").style.display = "none";
+  urlPendiente = null;
+};
+
+  
 function toggleMobilePanel() {
   const panel = document.querySelector('.mobile-panel');
   const overlay = document.querySelector('.overlay');
@@ -371,6 +393,7 @@ document.addEventListener('DOMContentLoaded', () => {
   
 </body>
 </html>
+
 
 
 
