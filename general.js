@@ -1,71 +1,50 @@
-let urlPendiente = null;
-let medicoSeleccionado = null;
-
-function toggleMobilePanel() {
+function toggleMobilePanel(){
   const panel = document.querySelector('.mobile-panel');
   const overlay = document.querySelector('.overlay');
   panel.classList.toggle('open');
   overlay.classList.toggle('active');
 }
 
-// Construir URL dinámica
-const URL_BASE = "https://script.google.com/macros/s/.../exec";
-function construirUrl(medico, tipo) {
-  return `${URL_BASE}?page=${tipo}&medico=${medico}`;
+document.getElementById("btnCerrarModal").onclick = () => {
+  document.getElementById("tipoModal").style.display = "none";
+  urlPendiente = null;
 }
 
-// Inicialización
+let urlPendiente = null;
+
 document.addEventListener('DOMContentLoaded', () => {
 
-  // Render menú desktop y mobile
-  const menuDesktop = document.getElementById('menuDesktop');
-  const menuMobile = document.getElementById('mobile-menu-content');
+  // Clonar menú sidebar a mobile
+  const sidebarMenu = document.getElementById('sidebar-menu');
+  const mobileMenu = document.getElementById('mobile-menu-content');
+  if(sidebarMenu && mobileMenu) mobileMenu.innerHTML = sidebarMenu.innerHTML;
 
-  CLIENTE.MENU.forEach(item => {
-    const div = document.createElement('div');
-    div.className = "menu-item";
-    div.innerHTML = `<div class="menu-button">${item.nombre}</div>
-      <div class="dropdown">
-        ${item.links.map(l => `<a href="#" data-medico="${l.medico}">${l.text}</a>`).join('')}
-      </div>`;
-    menuDesktop.appendChild(div);
-    menuMobile.appendChild(div.cloneNode(true));
-  });
-
-  // Mobile accordion
-  menuMobile.addEventListener('click', e => {
+  // Accordion mobile
+  mobileMenu.addEventListener('click', e => {
     const btn = e.target.closest('.menu-button');
-    if (btn) btn.parentElement.classList.toggle('open');
+    if(btn) btn.parentElement.classList.toggle('open');
   });
 
-  // Interceptar click en links
+  // Interceptar links
   document.addEventListener("click", e => {
-    const a = e.target.closest("a[data-medico]");
-    if (!a) return;
-    e.preventDefault();
-    medicoSeleccionado = a.dataset.medico;
-    urlPendiente = construirUrl(medicoSeleccionado, "solicitud");
-    document.getElementById("tipoModal").style.display = "flex";
+    const a = e.target.closest("a");
+    if(!a) return;
+    if(a.href.includes("page=solicitud")){
+      e.preventDefault();
+      urlPendiente = a.href;
+      document.getElementById("tipoModal").style.display = "flex";
+    }
   });
-
-  document.getElementById("btnCerrarModal").onclick = () => {
-    document.getElementById("tipoModal").style.display = "none";
-    urlPendiente = null;
-    medicoSeleccionado = null;
-  };
 
   document.getElementById("btnPaciente").onclick = () => {
-    window.location.href = construirUrl(medicoSeleccionado, "solicitud");
+    if(urlPendiente) window.location.href = urlPendiente;
   };
-
   document.getElementById("btnProfesional").onclick = () => {
-    window.location.href = construirUrl(medicoSeleccionado, "profesional");
+    if(urlPendiente){
+      const url = new URL(urlPendiente);
+      url.searchParams.set("page","profesional");
+      window.location.href = url.toString();
+    }
   };
-
-  // Cargar datos del cliente
-  document.getElementById("logoCliente").src = CLIENTE.logo;
-  document.getElementById("nombreCliente").textContent = CLIENTE.nombre;
-  document.getElementById("especialidadesCliente").textContent = CLIENTE.especialidades;
-  document.getElementById("descripcionCliente").innerHTML = CLIENTE.descripcion;
 
 });
