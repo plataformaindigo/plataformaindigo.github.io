@@ -23,7 +23,7 @@ const CLIENTE = {
 };
 
 // Construir sidebar completo
-function construirSidebar(){
+function construirMenu(){
   // Actualizar perfil
   const profilePic = document.querySelector('.profile-pic img');
   if(profilePic) profilePic.src = CLIENTE.logo;
