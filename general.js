@@ -92,3 +92,30 @@ document.addEventListener("click", e => {
     abrirModal(a.href);
   }
 });
+
+// Abrir mini-modal al tocar "Enviar enlace a paciente"
+document.getElementById("btnEnviarPaciente").onclick = () => {
+  if (!urlPendiente) return;
+  document.getElementById("tipoModal").style.display = "none"; // cerramos modal principal
+  document.getElementById("modalEnviarPaciente").style.display = "flex";
+  document.getElementById("inputWhatsapp").value = ""; // limpiar input
+};
+
+// Cerrar mini-modal
+document.getElementById("btnCerrarEnviarPaciente").onclick = () => {
+  document.getElementById("modalEnviarPaciente").style.display = "none";
+};
+
+// Botón enviar WhatsApp
+document.getElementById("btnEnviarWA").onclick = () => {
+  const numero = document.getElementById("inputWhatsapp").value.trim();
+  if (!numero.match(/^\d+$/)) {
+    alert("Ingrese un número válido (solo dígitos).");
+    return;
+  }
+  const waURL = `https://wa.me/${numero}?text=Por%20favor,%20complete%20el%20formulario%20del%20informe%20médico:%20${encodeURIComponent(urlPendiente)}`;
+  window.open(waURL, "_blank");
+  document.getElementById("modalEnviarPaciente").style.display = "none";
+};
+
+
