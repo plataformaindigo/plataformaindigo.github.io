@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Inicio Profesional Médico</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="overlay" onclick="toggleMobilePanel()"></div>
+
+<div class="container">
+  <aside class="sidebar">
+    <div class="profile-pic">
+      <img src="" id="logoCliente" alt="Logo">
+    </div>
+    <div>
+      <div class="name" id="nombreCliente"></div>
+      <div class="specialty" id="especialidadesCliente"></div>
+      <div class="description" id="descripcionCliente"></div>
+    </div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <div style="color:white; font-weight:800">PANEL DE INFORMES MEDICOS</div>
+      <button class="mobile-toggle" onclick="toggleMobilePanel()">☰</button>
+      <nav class="menu" id="menuDesktop"></nav>
+    </header>
+
+    <div class="mobile-panel">
+        <div class="panel-header">
+            <span style="font-weight: 800;">ESPECIALIDADES Y ESTUDIOS</span>
+            <button class="close-btn" onclick="toggleMobilePanel()">&times;</button>
+        </div>
+        <div id="mobile-menu-content"></div>
+    </div>
+
+    <div class="content">
+      <div class="grid-container">
+        <a href="#" target="_blank" class="grid-card">
+          <div style="font-size: 40px; margin-bottom: 10px;">📋</div>
+          <span>Lista de Pacientes</span>
+        </a>
+
+        <a href="#" target="_blank" class="grid-card">
+          <div style="font-size: 40px; margin-bottom: 10px;">📂</div>
+          <span>Carpeta de Informes</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL TIPO USUARIO -->
+<div id="tipoModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,.55); z-index:5000; align-items:center; justify-content:center;">
+  <div style="background:#fff; padding:30px 30px 25px; border-radius:14px; text-align:center; min-width:280px; position:relative;">
+    <button id="btnCerrarModal"
+      style="position:absolute; top:10px; right:12px; background:none; border:none; font-size:22px; cursor:pointer; color:#888;">
+      ×
+    </button>
+    <h3 style="margin-top:0; color:#1f6f8b;">¿Qué desea hacer?</h3>
+    <button id="btnPaciente" style="margin:10px; padding:10px 16px;">SOLICITAR INFORME</button>
+    <button id="btnProfesional" style="margin:10px; padding:10px 16px;">EMITIR INFORME</button>
+  </div>
+</div>
+
+<script src="general.js"></script>
+<script src="datosCliente.js"></script>
+
+</body>
+</html>
