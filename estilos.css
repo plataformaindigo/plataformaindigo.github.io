@@ -147,3 +147,49 @@ body { margin: 0; background: var(--light); color: var(--text-dark); height: 100
   .main { height: auto; overflow: visible; }
   .grid-container { padding: 30px 20px; grid-template-columns: 1fr; }
 }
+
+/* --- CORRECCIÓN DE FUNCIONALIDAD: ACORDEÓN DE ESPECIALIDADES --- */
+
+/* 1. Ocultamos la lista de médicos por defecto */
+#sidebar-menu .dropdown {
+  display: none; 
+  background: rgba(0, 0, 0, 0.2); /* Fondo ligeramente más oscuro para los médicos */
+  width: 100%;
+}
+
+/* 2. La mostramos solo cuando la especialidad tiene la clase 'open' */
+#sidebar-menu .menu-item.open .dropdown {
+  display: block;
+}
+
+/* 3. Estilizamos los enlaces de los médicos para que se vean profesionales */
+#sidebar-menu .dropdown a {
+  display: block;
+  padding: 16px 45px;
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: none;
+  font-size: 0.95rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.3s ease;
+}
+
+/* 4. Efecto Hover para el médico seleccionado */
+#sidebar-menu .dropdown a:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--accent); /* Cambia al Aguamarina Eléctrico */
+  padding-left: 55px;   /* Pequeño desplazamiento a la derecha */
+}
+
+/* 5. Opcional: Rotación de la flecha indicadora (si el JS la incluye) */
+#sidebar-menu .menu-button::after {
+  content: "▸";
+  font-size: 0.8rem;
+  transition: transform 0.3s ease;
+  opacity: 0.5;
+}
+
+#sidebar-menu .menu-item.open .menu-button::after {
+  transform: rotate(90deg);
+  opacity: 1;
+  color: var(--accent);
+}
