@@ -1,22 +1,25 @@
 :root {
-  --primary: #1f6f8b;
-  --secondary: #2ec4b6;
-  --accent: #6fffe9;
-  --dark: #0b2545;
-  --light: #f3f7fa;
+  /* Paleta Índigo (Corregida según tu ejemplo) */
+  --primary: #1f6f8b;      /* Petróleo */
+  --secondary: #2ec4b6;    /* Turquesa */
+  --accent: #6fffe9;       /* Aguamarina Eléctrico */
+  --dark: #0b2545;         /* Azul Marino Muy Oscuro */
+  --light: #f3f7fa;        /* Fondo grisáceo claro */
   --white: #ffffff;
   --text-dark: #1c2b36;
   --text-light: #6b7c8a;
+  
   --radius-lg: 18px;
   --radius-sm: 8px;
+  --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.05);
 }
 
 /* BASE */
 * { box-sizing: border-box; font-family: "Inter", sans-serif; }
-body { margin: 0; background: var(--bg-light); color: var(--text-dark); height: 100vh; overflow: hidden; }
+body { margin: 0; background: var(--light); color: var(--text-dark); height: 100vh; overflow: hidden; }
 .container { display: flex; height: 100vh; }
 
-/* SIDEBAR FIJA (PC) */
+/* SIDEBAR IZQUIERDA (PC) */
 .sidebar {
   width: 320px;
   background: var(--white);
@@ -30,114 +33,126 @@ body { margin: 0; background: var(--bg-light); color: var(--text-dark); height: 
 }
 
 .profile-pic { 
-  width: 140px; height: 140px; 
-  margin-bottom: 25px; border-radius: 50%;
-  overflow: hidden; border: 4px solid var(--bg-light);
+  width: 140px; height: 140px; margin-bottom: 25px; 
+  border-radius: 50%; overflow: hidden;
+  border: 4px solid var(--light);
   box-shadow: var(--shadow-soft);
 }
 .profile-pic img { width: 100%; height: 100%; object-fit: contain; }
 
-.name { font-size: 1.5rem; font-weight: 800; color: var(--primary); margin-bottom: 6px; text-align: center; }
+.name { 
+  font-size: 1.5rem; font-weight: 800; color: var(--primary); 
+  margin-bottom: 6px; text-align: center; 
+}
+
 .specialty { 
   font-size: 0.85rem; font-weight: 700; color: var(--secondary);
-  margin-bottom: 20px; padding-bottom: 12px;
-  border-bottom: 2px solid var(--secondary);
-  text-transform: uppercase;
+  text-transform: uppercase; margin-bottom: 20px;
+  width: 100%; text-align: center;
+  padding-bottom: 12px; border-bottom: 2px solid var(--secondary); 
 }
+
 .description { font-size: 0.95rem; line-height: 1.6; text-align: center; color: var(--text-light); }
 
 /* AREA PRINCIPAL */
-.main { flex: 1; display: flex; flex-direction: column; overflow: hidden; background: var(--bg-light); }
+.main { flex: 1; display: flex; flex-direction: column; overflow: hidden; background: var(--light); }
 
-/* TOPBAR PC */
+/* TOPBAR INTEGRADA (Petróleo) */
 .topbar {
   height: 70px;
   background: var(--primary);
-  display: flex; align-items: center; justify-content: flex-end;
-  padding: 0 30px; z-index: 1000;
+  display: flex; 
+  align-items: center; 
+  justify-content: flex-end;
+  padding: 0 30px; 
+  z-index: 1000;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 
 .mobile-toggle {
   background: transparent; border: none; color: white;
-  font-size: 2.2rem; cursor: pointer;
-  display: flex; align-items: center; justify-content: center;
+  font-size: 2.2rem; cursor: pointer; display: flex; 
+  align-items: center; justify-content: center;
 }
 
-/* GRID BOTONES */
+/* GRID DE BOTONES - HOVER AGUAMARINA */
 .grid-container {
   display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 30px; padding: 50px; max-width: 1100px; margin: 0 auto;
 }
+
 .grid-card {
   background: var(--white); padding: 50px 30px; border-radius: var(--radius-lg);
   text-decoration: none; display: flex; flex-direction: column;
   align-items: center; justify-content: center; text-align: center;
-  border: 2px solid transparent; 
+  border: 3px solid transparent; 
   box-shadow: var(--shadow-soft);
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
-.grid-card:hover { transform: translateY(-8px); border-color: var(--accent); }
+
+.grid-card:hover { 
+  transform: translateY(-8px); 
+  border-color: var(--accent); /* Hover con el Aguamarina eléctrico */
+  box-shadow: 0 15px 35px rgba(111, 255, 233, 0.2); 
+}
+
 .grid-card span { font-size: 1.2rem; font-weight: 800; text-transform: uppercase; color: var(--primary); }
 
-/* SIDEBAR ESPECIALIDADES */
+/* SIDEBAR ESPECIALIDADES (DERECHA) - FONDO PETRÓLEO */
 .specialty-panel {
   position: fixed; top: 0; right: 0;
-  height: 100vh; width: 340px; background: var(--primary);
-  color: white; z-index: 3000;
-  transform: translateX(100%);
+  height: 100vh; width: 340px; 
+  background: var(--primary); /* Fondo Petróleo */
+  color: white; 
+  z-index: 3000; transform: translateX(100%);
   transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  box-shadow: -10px 0 40px rgba(0, 0, 0, 0.2);
 }
 .specialty-panel.open { transform: translateX(0); }
-.panel-header { padding: 30px 25px; background: rgba(0,0,0,0.1); display: flex; justify-content: space-between; align-items: center; }
+
+.panel-header { 
+  padding: 30px 25px; background: rgba(0,0,0,0.1); color: white; 
+  display: flex; justify-content: space-between; align-items: center;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
 
 #sidebar-menu .menu-button { 
   width: 100%; padding: 22px 25px; background: transparent; border: none;
   color: white; font-size: 1.1rem; font-weight: 600; cursor: pointer;
   border-bottom: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: space-between;
 }
-#sidebar-menu .menu-button:hover { background: var(--secondary); padding-left: 35px; }
+
+/* Hover al Turquesa */
+#sidebar-menu .menu-button:hover { 
+  background: var(--secondary); 
+  padding-left: 35px;
+}
+
 #sidebar-menu .dropdown { background: rgba(0,0,0,0.15); display: none; }
 #sidebar-menu .menu-item.open .dropdown { display: block; }
 #sidebar-menu .dropdown a { color: white; padding: 16px 45px; text-decoration: none; display: block; }
-#sidebar-menu .dropdown a:hover { color: var(--accent); }
+#sidebar-menu .dropdown a:hover { color: var(--accent); background: rgba(255,255,255,0.05); }
 
 /* OVERLAY */
 .overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.3); backdrop-filter: blur(4px); display: none; z-index: 2500; }
 .overlay.active { display: block; }
 
-/* RESPONSIVE MÓVIL (CORREGIDO) */
+/* RESPONSIVE MÓVIL (Mismo comportamiento que el código 1) */
 .mobile-header { display: none; }
 
 @media (max-width: 768px) {
-  .sidebar { display: none; }
-  .topbar { display: none; } /* Ocultamos la topbar de PC para que no estorbe */
-
+  .sidebar, .topbar { display: none; }
+  
   .mobile-header {
-    display: flex; 
-    align-items: center;
-    background: var(--primary);
-    padding: 0 15px; /* Ajustado para que el botón pegue al borde */
-    height: 65px;    /* Altura fija para control total */
+    display: flex; align-items: center; justify-content: space-between;
+    background: var(--primary); padding: 0 15px; height: 65px;
     position: sticky; top: 0; z-index: 1001;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
   }
 
-  #logo-mobile { 
-    width: 40px; height: 40px; 
-    border-radius: 50%; border: 2px solid white;
-    margin-left: 5px;
-  }
-
-  #nombreCliente-mobile { 
-    flex: 1; font-size: 1.1rem; font-weight: 800; color: white; 
-    margin-left: 10px;
-  }
-
-  /* El botón hamburguesa ahora vive dentro de mobile-header en el HTML */
-  .mobile-header .mobile-toggle {
-    height: 100%;
-    padding: 0 10px;
-  }
-
+  #logo-mobile { width: 40px; height: 40px; border-radius: 50%; border: 2px solid white; margin-left: 5px; }
+  #nombreCliente-mobile { flex: 1; font-size: 1.1rem; font-weight: 800; color: white; margin-left: 10px; }
+  
   .main { height: auto; overflow: visible; }
   .grid-container { padding: 30px 20px; grid-template-columns: 1fr; }
+}
