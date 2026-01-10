@@ -39,11 +39,19 @@ function construirMenu() {
 document.addEventListener('DOMContentLoaded', () => {
   construirMenu();
 
-  // Datos del cliente
+  // 1. Inyectar datos en el Panel Izquierdo (PC)
   document.getElementById('logo').src = CLIENTE.logo;
   document.getElementById('nombreCliente').innerHTML = CLIENTE.nombre;
   document.getElementById('especialidadesCliente').innerHTML = CLIENTE.especialidades;
   document.getElementById('descripcionCliente').innerHTML = CLIENTE.descripcion;
+
+  // 2. Inyectar datos en la nueva Barra Superior (Móvil)
+  // Usamos condicionales para evitar errores si los IDs no existen en el HTML
+  const logoMob = document.getElementById('logo-mobile');
+  const nombreMob = document.getElementById('nombreCliente-mobile');
+
+  if (logoMob) logoMob.src = CLIENTE.logo;
+  if (nombreMob) nombreMob.innerHTML = CLIENTE.nombre;
 });
 
 
@@ -117,5 +125,3 @@ document.getElementById("btnEnviarWA").onclick = () => {
   window.open(waURL, "_blank");
   document.getElementById("modalEnviarPaciente").style.display = "none";
 };
-
-
