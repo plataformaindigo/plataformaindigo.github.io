@@ -21,9 +21,9 @@
 
     <h3 style="margin-top:0; color:#1f6f8b;">¿Qué desea hacer?</h3>
 
-    <button id="btnSolicitar" style="margin:10px; padding:10px 16px;">SOLICITAR INFORME</button>
+    <button id="btnSolicitar" style="margin:10px; padding:10px 16px;">CARGAR PACIENTE NUEVO</button>
     <button id="btnEmitir" style="margin:10px; padding:10px 16px;">EMITIR INFORME</button>
-    <button id="btnEnviarPaciente" style="margin:10px; padding:10px 16px;">ENVIAR ENLACE A PACIENTE</button>
+    <button id="btnEnviarPaciente" style="margin:10px; padding:10px 16px;">ENVIAR FORMULARIO A PACIENTE</button>
   </div>
 </div>
 <!-- MINI-MODAL ENVIAR A PACIENTE -->
@@ -45,7 +45,11 @@
 </div>
     <!-- FIN MODALES -->
 
-
+<div class="mobile-header">
+  <img id="logo-mobile" src="" alt="Logo">
+  <span id="nombreCliente-mobile"></span>
+  <button class="mobile-toggle" onclick="toggleSpecialtyPanel()">☰</button>
+</div>
   
 
 <div class="overlay" id="overlay" onclick="toggleSpecialtyPanel()"></div>
