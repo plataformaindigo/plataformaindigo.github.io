@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Perfil Profesional</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+<!-- ESTÉTICA DEL CLIENTE -->
+<link rel="stylesheet" href="./cliente.css">
+
+<!-- FICHA DEL CLIENTE -->
+<script src="./cliente.js"></script>
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- LOGIN PROFESIONAL -->
+<div class="login-profesional-container">
+    <i class="fas fa-key icon-lock"></i>
+    <select id="loginPrestaciones"
+            class="login-profesional-select"
+            onchange="if(this.value) window.location.href=this.value">
+        <option value="" selected disabled>INGRESO · INFORMES</option>
+    </select>
+
+    <i class="fas fa-key icon-lock" style="margin-left:8px"></i>
+    <select id="loginTramites"
+            class="login-profesional-select"
+            onchange="if(this.value) window.location.href=this.value">
+        <option value="" selected disabled>INGRESO · TRÁMITES</option>
+    </select>
+</div>
+
+<!-- HEADER -->
+<div class="header-card">
+    <img id="fotoPerfil" class="profile-pic">
+</div>
+
+<div class="content">
+
+<!-- INICIO -->
+<section id="inicio" class="view active">
+    <h1 id="nombreProfesional"></h1>
+    <span id="especialidad" class="specialty"></span>
+
+    <p id="descripcion" class="bio"></p>
+
+    <a href="FAQ.html" class="link-profesional">PREGUNTAS FRECUENTES</a>
+
+    <div class="contact-info">
+        <div id="matricula"></div>
+        <div id="ciudad"></div>
+    </div>
+
+    <div class="action-panel">
+
+        <a href="#" class="btn btn-turno" onclick="showView('consultorios')">
+            <span><i class="far fa-calendar-check"></i> Consultorios</span>
+            <i class="fas fa-chevron-right"></i>
+        </a>
+
+        <a href="#" class="btn btn-informe" onclick="showView('prestaciones')">
+            <span><i class="fas fa-file-alt"></i> Solicitar Informe</span>
+            <i class="fas fa-chevron-right"></i>
+        </a>
+
+        <a href="#" class="btn btn-med" onclick="showView('tramites')">
+            <span><i class="fas fa-print"></i> Trámite Administrativo</span>
+            <i class="fas fa-chevron-right"></i>
+        </a>
+
+    </div>
+
+    <div class="footer">
+        PLATAFORMA INDIGO ·
+        <span class="legal-link" onclick="showView('legal')">Aviso legal</span>
+    </div>
+</section>
+
+<!-- CONSULTORIOS -->
+<section id="consultorios" class="view">
+    <h1 id="nombreProfesional2"></h1>
+    <span class="specialty">Lugares de Atención</span>
+
+    <div id="listaConsultorios" class="grid-container"></div>
+
+    <div class="back-link" onclick="showView('inicio')">VOLVER</div>
+</section>
+
+<!-- PRESTACIONES -->
+<section id="prestaciones" class="view">
+    <h1 id="nombreProfesional4"></h1>
+    <span class="specialty">Seleccione el informe</span>
+
+    <div id="listaPrestaciones" class="grid-container"></div>
+
+    <div class="back-link" onclick="showView('inicio')">VOLVER</div>
+</section>
+
+<!-- TRÁMITES -->
+<section id="tramites" class="view">
+    <h1 id="nombreProfesional3"></h1>
+    <span class="specialty">Seleccione el trámite</span>
+
+    <div id="listaTramites" class="grid-container"></div>
+
+    <div class="back-link" onclick="showView('inicio')">VOLVER</div>
+</section>
+
+<!-- AVISO LEGAL -->
+<section id="legal" class="view">
+
+    <h1 style="color:#6c5ce7;">Aviso legal</h1>
+
+    <div style="
+        margin-top:20px;
+        font-size:.9rem;
+        line-height:1.55;
+        color:#4a4a4a;
+        text-align:left;
+    ">
+
+        <p>
+            Esta plataforma es una <strong>herramienta administrativa y de automatización documental</strong>
+            que opera sobre servicios del ecosistema de Google.
+        </p>
+
+        <p>
+            Su uso está destinado exclusivamente a <strong>profesionales habilitados</strong>,
+            quienes utilizan el sistema bajo su <strong>exclusiva responsabilidad profesional</strong>.
+        </p>
+
+        <p>
+            La plataforma no realiza diagnósticos, no sugiere tratamientos,
+            no emite prescripciones médicas ni toma decisiones clínicas.
+        </p>
+
+        <p>
+            Toda la información es ingresada y validada bajo responsabilidad
+            del profesional interviniente.
+        </p>
+
+        <p>
+            PLATAFORMA INDIGO actúa únicamente como medio técnico.
+        </p>
+
+        <button onclick="showView('inicio')" style="
+            margin-top:15px;
+            background:#6c5ce7;
+            color:white;
+            border:none;
+            padding:10px 18px;
+            border-radius:12px;
+            cursor:pointer;
+            font-weight:600;
+        ">
+            Cerrar
+        </button>
+
+    </div>
+</section>
+
+</div>
+</div>
+
+<script>
+
+/* =========================
+   VIEW HANDLER
+========================= */
+
+function showView(id){
+    document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+}
+
+/* =========================
+   RENDER
+========================= */
+
+function renderFicha() {
+
+    document.getElementById("nombreProfesional").innerText  = fichaProfesional.nombreProfesional;
+    document.getElementById("nombreProfesional2").innerText = fichaProfesional.nombreProfesional;
+    document.getElementById("nombreProfesional3").innerText = fichaProfesional.nombreProfesional;
+
+    if (document.getElementById("nombreProfesional4")) {
+        document.getElementById("nombreProfesional4").innerText = fichaProfesional.nombreProfesional;
+    }
+
+    document.getElementById("especialidad").innerText = fichaProfesional.especialidad;
+    document.getElementById("descripcion").innerText  = fichaProfesional.descripcion;
+    document.getElementById("matricula").innerText    = fichaProfesional.matricula;
+    document.getElementById("ciudad").innerText       = fichaProfesional.ciudad;
+
+    if (document.getElementById("fotoPerfil")) {
+        document.getElementById("fotoPerfil").src = fichaProfesional.fotoPerfil;
+    }
+
+    /* LOGIN – PRESTACIONES */
+    const loginPrestaciones = document.getElementById("loginPrestaciones");
+    if (loginPrestaciones && fichaProfesional.prestaciones) {
+        loginPrestaciones.innerHTML =
+            '<option value="" selected disabled>PRÁCTICAS</option>';
+        fichaProfesional.prestaciones.forEach(p => {
+            const option = document.createElement("option");
+            option.value =
+                `${fichaProfesional.masterPrivateURL}?page=profesional&medico=${p.medico}`;
+            option.textContent = p.nombre;
+            loginPrestaciones.appendChild(option);
+        });
+    }
+
+    /* LOGIN – TRÁMITES */
+    const loginTramites = document.getElementById("loginTramites");
+    if (loginTramites && fichaProfesional.tramites) {
+        loginTramites.innerHTML =
+            '<option value="" selected disabled>TRÁMITES</option>';
+        fichaProfesional.tramites.forEach(t => {
+            const option = document.createElement("option");
+            option.value =
+                `${fichaProfesional.masterPrivateURL}?page=profesional&medico=${t.medico}`;
+            option.textContent = t.nombre;
+            loginTramites.appendChild(option);
+        });
+    }
+
+    /* CONSULTORIOS */
+    const contenedorConsultorios = document.getElementById("listaConsultorios");
+    if (contenedorConsultorios && fichaProfesional.consultorios) {
+        contenedorConsultorios.innerHTML = "";
+        fichaProfesional.consultorios.forEach((c, index) => {
+            const icono = index === 0
+                ? '<i class="fas fa-door-open"></i>'
+                : '<i class="fas fa-hospital"></i>';
+            const div = document.createElement("div");
+            div.className = "grid-item";
+            div.innerHTML = `
+                <div class="clinic-info">
+                    ${icono}
+                    <span>${c.nombre}</span>
+                </div>
+                <a class="btn-wa" href="${c.telefono}">
+                    <i class="fab fa-whatsapp"></i> Solicitar Turno
+                </a>`;
+            contenedorConsultorios.appendChild(div);
+        });
+    }
+
+    /* PRESTACIONES */
+    const contenedorPrestaciones = document.getElementById("listaPrestaciones");
+    if (contenedorPrestaciones && fichaProfesional.prestaciones) {
+        contenedorPrestaciones.innerHTML = "";
+        fichaProfesional.prestaciones.forEach(p => {
+            const div = document.createElement("div");
+            div.className = "grid-item";
+            div.innerHTML = `
+                <div class="clinic-info">
+                    <i class="fas fa-file-medical"></i>
+                    <span>${p.nombre}</span>
+                </div>
+                <a class="btn-inf"
+                   href="${fichaProfesional.masterPublicURL}?page=solicitud&medico=${p.medico}">
+                    <i class="fas fa-arrow-right"></i> Continuar
+                </a>`;
+            contenedorPrestaciones.appendChild(div);
+        });
+    }
+
+    /* TRÁMITES */
+    const contenedorTramites = document.getElementById("listaTramites");
+    if (contenedorTramites && fichaProfesional.tramites) {
+        contenedorTramites.innerHTML = "";
+        fichaProfesional.tramites.forEach(t => {
+            const div = document.createElement("div");
+            div.className = "grid-item";
+            div.innerHTML = `
+                <div class="clinic-info">
+                    <i class="fas fa-file-medical"></i>
+                    <span>${t.nombre}</span>
+                </div>
+                <a class="btn-inf btn-tramite"
+                   href="${fichaProfesional.masterPublicURL}?page=solicitud&medico=${t.medico}">
+                    <i class="fas fa-file-alt"></i> Continuar
+                </a>`;
+            contenedorTramites.appendChild(div);
+        });
+    }
+}
+
+renderFicha();
+
+</script>
+
+</body>
+</html>
