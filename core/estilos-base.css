@@ -1,195 +1,257 @@
+<style>
+/* === estilos SIN cambios === */
+
+
 :root {
-  /* Paleta Índigo Oficial */
-  --primary: #1f6f8b;      /* Petróleo */
-  --secondary: #2ec4b6;    /* Turquesa */
-  --accent: #6fffe9;       /* Aguamarina Eléctrico (Para Hovers) */
-  --dark: #0b2545;         /* Azul Marino Profundo (Para Sidebar) */
-  --light: #f3f7fa;        /* Fondo General */
-  --white: #ffffff;
-  --text-dark: #1c2b36;
-  --text-light: #6b7c8a;
-  
-  --radius-lg: 18px;
-  --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.05);
+    --primary:#6c5ce7;
+    --accent:#a29bfe;
+    --bg:#f9f9fb;
+    --white:#ffffff;
+    --text:#2d3436;
+
+    --btn-azul:#3498db;
+    --btn-violeta:#8e44ad;
+    --btn-verde:#27ae60;
 }
 
-/* BASE */
-* { box-sizing: border-box; font-family: "Inter", sans-serif; }
-body { margin: 0; background: var(--light); color: var(--text-dark); height: 100vh; overflow: hidden; }
-.container { display: flex; height: 100vh; }
-
-/* SIDEBAR IZQUIERDA (Desktop) - AHORA OSCURA */
-.sidebar {
-  width: 320px;
-  background: linear-gradient(180deg, var(--dark) 0%, #13315c 100%);
-  padding: 45px 25px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  z-index: 10;
-  flex-shrink: 0;
-  color: white; /* Texto blanco para fondo oscuro */
-  box-shadow: 8px 0 25px rgba(0,0,0,0.15);
+body{
+    font-family:'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+    background:var(--bg);
+    margin:0;
+    display:flex;
+    justify-content:center;
+    padding:20px;
+    color:var(--text);
+}
+.login-profesional{
+    position:absolute;
+    top:15px;
+    right:15px;
+    background:rgba(255,255,255,.2);
+    color:white;
+    text-decoration:none;
+    font-size:.7rem;
+    font-weight:bold;
+    padding:6px 12px;
+    border-radius:20px;
+    border:1px solid rgba(255,255,255,.4);
+    backdrop-filter:blur(5px);
+    z-index:10;
+    transition:all .3s ease;
 }
 
-.profile-pic { 
-  width: 140px; height: 140px; margin-bottom: 25px; 
-  border-radius: 50%; overflow: hidden;
-  border: 3px solid var(--secondary); /* Aro turquesa */
-  background: rgba(255,255,255,0.05);
-}
-.profile-pic img { width: 100%; height: 100%; object-fit: contain; }
-
-.name { 
-  font-size: 1.5rem; font-weight: 800; color: var(--accent); /* Nombre en aguamarina */
-  margin-bottom: 8px; text-align: center; 
+.login-profesional:hover{
+    background:white;
+    color:var(--primary);
 }
 
-.specialty { 
-  font-size: 0.9rem; font-weight: 700; color: var(--secondary);
-  text-transform: uppercase; margin-bottom: 20px;
-  width: 100%; text-align: center;
-  padding-bottom: 12px; border-bottom: 2px solid var(--secondary); 
+   .login-profesional-container {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(5px);
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    padding: 2px 10px;
 }
 
-.description { 
-  font-size: 0.9rem; line-height: 1.6; text-align: center; 
-  color: rgba(255,255,255,0.8); /* Blanco suavizado */
+.login-profesional-select {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 0.7rem;
+    font-weight: bold;
+    padding: 6px 5px;
+    cursor: pointer;
+    outline: none;
+    appearance: none; /* Quita la flecha por defecto en algunos navegadores */
 }
 
-/* AREA PRINCIPAL */
-.main { flex: 1; display: flex; flex-direction: column; overflow: hidden; background: var(--light); }
-
-/* TOPBAR */
-.topbar {
-  height: 70px;
-  background: linear-gradient(90deg, var(--dark), #13315c);
-  display: flex; align-items: center; justify-content: flex-end;
-  padding: 0 30px; z-index: 1000;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+.login-profesional-select option {
+    color: var(--text); /* Para que las opciones sean legibles en el despliegue */
 }
 
-.mobile-toggle {
-  background: transparent; border: none; color: white;
-  font-size: 2.2rem; cursor: pointer; display: flex; 
-  align-items: center; justify-content: center;
+.icon-lock {
+    color: white;
+    font-size: 0.7rem;
 }
 
-/* GRID DE OBJETOS - CON HOVER AGUAMARINA */
-.grid-container {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 30px; padding: 50px; max-width: 1000px; margin: 0 auto;
+.btn{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:16px 22px;
+    border-radius:15px;
+    text-decoration:none;
+    font-weight:600;
+    transition:all .3s ease;
+    box-shadow:0 4px 6px rgba(0,0,0,.05);
 }
 
-.grid-card {
-  background: var(--white); padding: 50px 30px; border-radius: var(--radius-lg);
-  text-decoration: none; display: flex; flex-direction: column;
-  align-items: center; justify-content: center; text-align: center;
-  border: 3px solid transparent; /* Espacio reservado para el hover */
-  box-shadow: var(--shadow-soft);
-  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+/* Consultorios */
+.btn-turno:hover{
+    background:var(--btn-azul);
+    color:white;
+    transform:translateY(-2px);
 }
 
-.grid-card:hover { 
-  transform: translateY(-8px); 
-  border-color: var(--accent); /* El borde se vuelve Aguamarina en hover */
-  box-shadow: 0 15px 35px rgba(111, 255, 233, 0.25); 
+/* Solicitar informe */
+.btn-informe:hover{
+    background:var(--btn-violeta);
+    color:white;
+    transform:translateY(-2px);
 }
 
-.grid-card span { font-size: 1.2rem; font-weight: 800; text-transform: uppercase; color: var(--primary); }
-
-/* SIDEBAR ESPECIALIDADES (DERECHA) */
-.specialty-panel {
-  position: fixed; top: 0; right: 0;
-  height: 100vh; width: 340px; 
-  background: var(--dark);
-  color: white; z-index: 3000; 
-  transform: translateX(100%);
-  transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-}
-.specialty-panel.open { transform: translateX(0); }
-
-.panel-header { 
-  padding: 30px 25px; background: rgba(0,0,0,0.2); 
-  display: flex; justify-content: space-between; align-items: center;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
+/* Trámite */
+.btn-med:hover{
+    background:var(--btn-verde);
+    color:white;
+    transform:translateY(-2px);
 }
 
-.close-btn { background: none; border: none; color: white; font-size: 2rem; cursor: pointer; }
-
-#sidebar-menu .menu-button { 
-  width: 100%; padding: 22px 25px; background: transparent; border: none;
-  color: white; font-size: 1.1rem; font-weight: 600; cursor: pointer;
-  border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; justify-content: space-between;
+.btn-wa{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    background:#ebf5fb;
+    color:var(--btn-azul);
+    text-decoration:none;
+    padding:10px;
+    border-radius:12px;
+    font-weight:600;
+    font-size:.85rem;
+    transition:all .3s ease;
 }
 
-#sidebar-menu .menu-button:hover { background: var(--secondary); padding-left: 35px; }
-
-/* OVERLAY */
-.overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); backdrop-filter: blur(4px); display: none; z-index: 2500; }
-.overlay.active { display: block; }
-
-/* RESPONSIVE MÓVIL */
-.mobile-header { display: none; }
-
-@media (max-width: 768px) {
-  .sidebar, .topbar { display: none; }
-  
-  .mobile-header {
-    display: flex; align-items: center; justify-content: space-between;
-    background: var(--dark); padding: 0 15px; height: 65px;
-    position: sticky; top: 0; z-index: 1001;
-  }
-
-  #logo-mobile { width: 42px; height: 42px; border-radius: 50%; border: 2px solid var(--secondary); }
-  #nombreCliente-mobile { flex: 1; font-size: 1.1rem; font-weight: 800; color: white; margin-left: 12px; }
-  
-  .main { height: auto; overflow: visible; }
-  .grid-container { padding: 30px 20px; grid-template-columns: 1fr; }
+.btn-wa:hover{
+    background:var(--btn-azul);
+    color:white;
 }
 
-/* --- CORRECCIÓN DE FUNCIONALIDAD: ACORDEÓN DE ESPECIALIDADES --- */
-
-/* 1. Ocultamos la lista de médicos por defecto */
-#sidebar-menu .dropdown {
-  display: none; 
-  background: rgba(0, 0, 0, 0.2); /* Fondo ligeramente más oscuro para los médicos */
-  width: 100%;
+.btn-inf{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    background:#ebf5fb;
+    color:var(--btn-violeta);
+    text-decoration:none;
+    padding:10px;
+    border-radius:12px;
+    font-weight:600;
+    font-size:.85rem;
+    transition:all .3s ease;
 }
 
-/* 2. La mostramos solo cuando la especialidad tiene la clase 'open' */
-#sidebar-menu .menu-item.open .dropdown {
-  display: block;
+.btn-inf:hover{
+    background:var(--btn-violeta);
+    color:white;
 }
 
-/* 3. Estilizamos los enlaces de los médicos para que se vean profesionales */
-#sidebar-menu .dropdown a {
-  display: block;
-  padding: 16px 45px;
-  color: rgba(255, 255, 255, 0.85);
-  text-decoration: none;
-  font-size: 0.95rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  transition: all 0.3s ease;
+.legal-link{
+    color:#6c5ce7;
+    font-weight:600;
+    cursor:pointer;
+}
+.legal-link:hover{
+    text-decoration:underline;
 }
 
-/* 4. Efecto Hover para el médico seleccionado */
-#sidebar-menu .dropdown a:hover {
-  background: rgba(255, 255, 255, 0.1);
-  color: var(--accent); /* Cambia al Aguamarina Eléctrico */
-  padding-left: 55px;   /* Pequeño desplazamiento a la derecha */
+
+.container{
+    width:100%;
+    max-width:450px;
+    background:var(--white);
+    border-radius:24px;
+    box-shadow:0 15px 35px rgba(108,92,231,.15);
+    overflow:hidden;
+    position:relative;
 }
 
-/* 5. Opcional: Rotación de la flecha indicadora (si el JS la incluye) */
-#sidebar-menu .menu-button::after {
-  content: "▸";
-  font-size: 0.8rem;
-  transition: transform 0.3s ease;
-  opacity: 0.5;
+/* --- header --- */
+.login-profesional{
+    position:absolute;
+    top:15px;
+    right:15px;
+    background:rgba(255,255,255,.2);
+    color:white;
+    text-decoration:none;
+    font-size:.7rem;
+    font-weight:bold;
+    padding:6px 12px;
+    border-radius:20px;
+    border:1px solid rgba(255,255,255,.4);
 }
 
-#sidebar-menu .menu-item.open .menu-button::after {
-  transform: rotate(90deg);
-  opacity: 1;
-  color: var(--accent);
+.header-card{
+    background:linear-gradient(135deg,var(--primary),var(--accent));
+    height:130px;
+    position:relative;
 }
+
+.profile-pic{
+    width:120px;
+    height:120px;
+    border-radius:50%;
+    border:5px solid var(--white);
+    position:absolute;
+    bottom:-60px;
+    left:50%;
+    transform:translateX(-50%);
+    background:#eee;
+    object-fit:cover;
+}
+
+/* --- content --- */
+.content{
+    padding:75px 25px 30px;
+    text-align:center;
+}
+
+h1{margin:0;font-size:1.6rem;color:var(--primary);}
+.specialty{color:var(--accent);font-weight:600;font-size:.9rem;text-transform:uppercase;}
+
+.bio{margin:20px 0;color:#636e72;}
+.contact-info{display:flex;justify-content:center;gap:15px;font-size:.85rem;color:#b2bec3;}
+
+.action-panel{display:flex;flex-direction:column;gap:15px;margin-top:25px;}
+
+.btn{display:flex;justify-content:space-between;padding:16px 22px;border-radius:15px;text-decoration:none;font-weight:600;}
+.btn-turno{background:#ebf5fb;color:var(--btn-azul);}
+.btn-informe{background:#f5eef8;color:var(--btn-violeta);}
+.btn-med{background:#e9f7ef;color:var(--btn-verde);}
+
+/* --- consultorios --- */
+.grid-container{display:grid;gap:15px;margin-top:25px;text-align:left;}
+.grid-item{border:1px solid #eee;border-radius:18px;padding:18px;}
+.clinic-info{font-weight:700;}
+
+.btn-wa{display:flex;justify-content:center;gap:8px;background:#ebf5fb;color:var(--btn-azul);padding:10px;border-radius:12px;text-decoration:none;margin-top:10px;}
+
+.btn-inf{display:flex;justify-content:center;gap:8px;background:#ebf5fb;color:var(--btn-violeta);padding:10px;border-radius:12px;text-decoration:none;margin-top:10px;}
+
+.back-link{margin-top:30px;display:inline-block;color:#b2bec3;cursor:pointer;}
+.footer{margin-top:35px;font-size:.75rem;color:#b2bec3;}
+
+.view{display:none;}
+.view.active{display:block;}
+
+/* === TRÁMITES – forzar verde === */
+
+.btn-inf.btn-tramite{
+    background:#e9f7ef;
+    color:var(--btn-verde);
+}
+
+.btn-inf.btn-tramite:hover{
+    background:var(--btn-verde);
+    color:white;
+}
+
+
+</style>
