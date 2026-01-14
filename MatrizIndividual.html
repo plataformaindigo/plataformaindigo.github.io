@@ -1,20 +1,36 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Perfil Profesional</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil Profesional</title>
 
-<!-- ICONOS -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
-<!-- ESTILO BASE -->
-<link rel="stylesheet" href="/core/estilos-base.css">
+    <link rel="stylesheet" href="/core/estilos-base.css">
 
-<!-- CORE -->
-<script src="/core/views.js"></script>
-<script src="/core/render.js"></script>
+    <script src="/core/views.js"></script>
+    <script src="/core/render.js"></script>
 
+    <script>
+        (function() {
+            // Extrae el nombre del archivo actual (ej: "pabloprueba")
+            const path = window.location.pathname;
+            const pageName = path.split('/').pop().split('.')[0];
+
+            // Si no es la matriz principal, intenta cargar el JS del cliente
+            if (pageName && pageName !== 'MatrizIndividual') {
+                const script = document.createElement('script');
+                // Busca en: /nombre-del-html/cliente.js
+                script.src = `./${pageName}/cliente.js`;
+                
+                script.onload = () => console.log(`Configuración de "${pageName}" cargada.`);
+                script.onerror = () => console.error(`No se encontró cliente.js en /${pageName}/`);
+                
+                document.head.appendChild(script);
+            }
+        })();
+    </script>
 </head>
 
 <body>
