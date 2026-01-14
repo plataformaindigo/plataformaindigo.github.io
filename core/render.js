@@ -4,6 +4,8 @@
 
 function renderFicha() {
 
+    /* ===== DATOS GENERALES ===== */
+
     document.getElementById("nombreProfesional").innerText  = fichaProfesional.nombreProfesional;
     document.getElementById("nombreProfesional2").innerText = fichaProfesional.nombreProfesional;
     document.getElementById("nombreProfesional3").innerText = fichaProfesional.nombreProfesional;
@@ -21,11 +23,15 @@ function renderFicha() {
         document.getElementById("fotoPerfil").src = fichaProfesional.fotoPerfil;
     }
 
-    /* LOGIN – PRESTACIONES */
+
+    /* ===== LOGIN – PRESTACIONES ===== */
+
     const loginPrestaciones = document.getElementById("loginPrestaciones");
     if (loginPrestaciones && fichaProfesional.prestaciones) {
+
         loginPrestaciones.innerHTML =
             '<option value="" selected disabled>PRÁCTICAS</option>';
+
         fichaProfesional.prestaciones.forEach(p => {
             const option = document.createElement("option");
             option.value =
@@ -35,11 +41,15 @@ function renderFicha() {
         });
     }
 
-    /* LOGIN – TRÁMITES */
+
+    /* ===== LOGIN – TRÁMITES ===== */
+
     const loginTramites = document.getElementById("loginTramites");
     if (loginTramites && fichaProfesional.tramites) {
+
         loginTramites.innerHTML =
             '<option value="" selected disabled>TRÁMITES</option>';
+
         fichaProfesional.tramites.forEach(t => {
             const option = document.createElement("option");
             option.value =
@@ -49,14 +59,20 @@ function renderFicha() {
         });
     }
 
-    /* CONSULTORIOS */
+
+    /* ===== CONSULTORIOS ===== */
+
     const contenedorConsultorios = document.getElementById("listaConsultorios");
     if (contenedorConsultorios && fichaProfesional.consultorios) {
+
         contenedorConsultorios.innerHTML = "";
+
         fichaProfesional.consultorios.forEach((c, index) => {
+
             const icono = index === 0
                 ? '<i class="fas fa-door-open"></i>'
                 : '<i class="fas fa-hospital"></i>';
+
             const div = document.createElement("div");
             div.className = "grid-item";
             div.innerHTML = `
@@ -66,16 +82,23 @@ function renderFicha() {
                 </div>
                 <a class="btn-wa" href="${c.telefono}">
                     <i class="fab fa-whatsapp"></i> Solicitar Turno
-                </a>`;
+                </a>
+            `;
+
             contenedorConsultorios.appendChild(div);
         });
     }
 
-    /* SOLICITUDES – PRESTACIONES */
+
+    /* ===== SOLICITUDES – PRESTACIONES ===== */
+
     const contenedorPrestaciones = document.getElementById("listaPrestaciones");
     if (contenedorPrestaciones && fichaProfesional.prestaciones) {
+
         contenedorPrestaciones.innerHTML = "";
+
         fichaProfesional.prestaciones.forEach(p => {
+
             const div = document.createElement("div");
             div.className = "grid-item";
             div.innerHTML = `
@@ -86,16 +109,22 @@ function renderFicha() {
                 <a class="btn-inf"
                    href="${fichaProfesional.masterPublicURL}?page=solicitud&medico=${p.medico}">
                     <i class="fas fa-arrow-right"></i> Continuar
-                </a>`;
+                </a>
+            `;
             contenedorPrestaciones.appendChild(div);
         });
     }
 
-    /* SOLICITUDES – TRÁMITES */
+
+    /* ===== SOLICITUDES – TRÁMITES ===== */
+
     const contenedorTramites = document.getElementById("listaTramites");
     if (contenedorTramites && fichaProfesional.tramites) {
+
         contenedorTramites.innerHTML = "";
+
         fichaProfesional.tramites.forEach(t => {
+
             const div = document.createElement("div");
             div.className = "grid-item";
             div.innerHTML = `
@@ -103,13 +132,27 @@ function renderFicha() {
                     <i class="fas fa-file-medical"></i>
                     <span>${t.nombre}</span>
                 </div>
-                <a class="btn-inf btn-tramite"
-                   href="${fichaProfesional.masterPublicURL}?page=solicitud&medico=${t.medico}">
-                    <i class="fas fa-file-alt"></i> Continuar
-                </a>`;
+		<a class="btn-inf btn-tramite"
+   		   href="${fichaProfesional.masterPublicURL}?page=solicitud&medico=${t.medico}">
+                    <i class="fas fa-file-alt"></i>Continuar 
+	</a>
+            `;
             contenedorTramites.appendChild(div);
         });
     }
 }
 
-document.addEventListener("DOMContentLoaded", renderFicha);
+
+/* =========================
+   VIEW HANDLER
+========================= */
+
+function showView(id){
+    document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+}
+
+renderFicha();
+
+
+</script>
