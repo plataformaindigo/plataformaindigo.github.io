@@ -12,6 +12,26 @@
 
 <body>
 
+<script>
+  // 1. Capturamos el nombre del médico de la URL
+  const urlParams = new URLSearchParams(window.location.search);
+  const medico = urlParams.get('medico');
+
+  if (medico) {
+    // 2. Creamos el link del CSS dinámicamente
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = `https://plataformaindigo.github.io/${medico}/cliente.css`;
+    document.head.appendChild(link);
+
+    // 3. Creamos el script del JS dinámicamente
+    const script = document.createElement('script');
+    script.src = `https://plataformaindigo.github.io/${medico}/cliente.js`;
+    document.body.appendChild(script);
+  }
+</script>
+	
+
 <div class="container">
 
 <div class="login-profesional-container">
